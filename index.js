@@ -37,9 +37,9 @@ const getGames = function(gameDate = '') {
 const getTeams = function(singleTeamId = '') {
   request(apiURL+`teams?sportId=1&teamId=${singleTeamId}`, (error, response, body) => {
     if( error ) {
-      return console.error(error);
+      return error
     } else {
-      return console.log(body)
+      return body
     }
   })
 }
@@ -50,9 +50,9 @@ const getTeams = function(singleTeamId = '') {
 const getGameFeed = function(gameId) {
   request(apiURL11+`game/${gameId}/feed/live`, (error, response, body) => {
     if( error ) {
-      return console.error(error);
+      return error
     } else {
-      return console.log(body)
+      return body
     }
   })
 }
@@ -70,14 +70,14 @@ const getStandings = function(league, year) {
   } else if ( league === 'NL' ) {
     leagueId = '104';
   } else if( league !== 'AL' || league !== 'NL' ) {
-    return console.error('Please enter a league. Accepted: AL / NL');
+    return {'Please enter a league. Accepted: AL / NL'}
   }
 
   request(`${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, (error, response, body) => {
     if( error ) {
-      return console.error(error);
+      return error
     } else {
-      return console.log(body)
+      return body
     }
   })
 }
