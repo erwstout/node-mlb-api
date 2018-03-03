@@ -4,7 +4,9 @@
   "description": "A Node.js wrapper for the new MLB Stats API",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "node test.js",
+    "eslint-init": "./node_modules/.bin/eslint --init",
+    "eslint": "./node_modules/.bin/eslint index.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,8 @@
   "homepage": "https://github.com/erwstout/node-mlb-api#readme",
   "dependencies": {
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2"
   }
 }
