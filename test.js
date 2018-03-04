@@ -2,6 +2,6 @@ const MLBApi = require('./index.js')
 
 MLBApi.getGames();
 
-MLBApi.getTeams();
-
-MLBApi.getStandings('AL');
+// MLBApi.getTeams();
+//
+// MLBApi.getStandings('AL');

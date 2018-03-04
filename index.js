@@ -19,12 +19,14 @@ const currentYear = new Date().getFullYear();
  * Get a list of games. If no game date is passed (MM/DD/YYYY), gets the current day
  */
 const getGames = function(gameDate = '') {
-  request(apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
-    if( error ) {
-      return error;
-    } else {
-      return body;
-    }
+  return new Promise( (resolve, reject) => {
+    request(apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
+      if( error ) {
+        resolve(error);
+      } else {
+        resolve(body);
+      }
+    })
   })
 }
 
