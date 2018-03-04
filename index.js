@@ -18,17 +18,17 @@ const currentYear = new Date().getFullYear();
 /**
  * Get a list of games. If no game date is passed (MM/DD/YYYY), gets the current day
  */
-const getGames = function(gameDate = '') {
-  return new Promise( (resolve, reject) => {
-    request({json: true}, apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
-      if( error ) {
-        resolve(error);
-      } else {
-        resolve(body);
-      }
-    })
-  })
-}
+ const getGames = function(gameDate = '') {
+   return new Promise( (resolve, reject) => {
+     request({url: apiURL+'schedule?sportId=1'+'&date='+gameDate, json: true}, (error, response, body) => {
+       if( error ) {
+         resolve(error);
+       } else {
+         resolve(body);
+       }
+     })
+   })
+ }
 
 /**
  * Get a list of data about teams
@@ -37,7 +37,7 @@ const getGames = function(gameDate = '') {
  * Possible TODO: Add team abbrev for easy call? `getTeams('CLE')`
  */
 const getTeams = function(singleTeamId = '') {
-  request(apiURL+`teams?sportId=1&teamId=${singleTeamId}`, (error, response, body) => {
+  request({url: apiURL+`teams?sportId=1&teamId=${singleTeamId}`, json: true}, (error, response, body) => {
     if( error ) {
       return error
     } else {
@@ -50,7 +50,7 @@ const getTeams = function(singleTeamId = '') {
  * Get Single Game Feed
  */
 const getGameFeed = function(gameId) {
-  request(apiURL11+`game/${gameId}/feed/live`, (error, response, body) => {
+  request({url: apiURL11+`game/${gameId}/feed/live`, json: true}, (error, response, body) => {
     if( error ) {
       return error
     } else {
@@ -75,7 +75,7 @@ const getStandings = function(league, year) {
     return console.error('Please enter a league. Accepted: AL / NL')
   }
 
-  request(`${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, (error, response, body) => {
+  request({url: `${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, json: true}, (error, response, body) => {
     if( error ) {
       return error
     } else {
