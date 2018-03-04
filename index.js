@@ -20,11 +20,11 @@ const currentYear = new Date().getFullYear();
  */
 const getGames = function(gameDate = '') {
   return new Promise( (resolve, reject) => {
-    request(apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
+    request({json: true}, apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
       if( error ) {
         resolve(error);
       } else {
-        resolve(JSON.stringify(body));
+        resolve(body);
       }
     })
   })
