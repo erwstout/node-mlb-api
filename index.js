@@ -24,7 +24,7 @@ const getGames = function(gameDate = '') {
       if( error ) {
         resolve(error);
       } else {
-        resolve(body);
+        resolve(JSON.stringify(body));
       }
     })
   })
