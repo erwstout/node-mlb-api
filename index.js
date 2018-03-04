@@ -21,9 +21,9 @@ const currentYear = new Date().getFullYear();
 const getGames = function(gameDate = '') {
   request(apiURL+'schedule?sportId=1'+'&date='+gameDate, (error, response, body) => {
     if( error ) {
-      console.error(error);
+      return error;
     } else {
-      console.log(body);
+      return body;
     }
   })
 }
