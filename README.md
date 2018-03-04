@@ -16,6 +16,8 @@ const games = MLBApi.getGames()
 ```
 
 ## Available Functions
+All functions return a promise containing the JSON response.
+
 ### `getGames()`
 Get a list of games. Accepts an optional date argument as a string (MM/DD/YYYY)
 to get particular date. If no argument is passed it will get the current day.
@@ -51,4 +53,4 @@ MLBApi.getStandings('NL', 2017) // 2017 NL Standings
 ## MLB Stats API
 The MLB Stats API documentation can be found [here](http://statsapi.mlb.com/docs/)
 
-**<u>NOTICE</u>:** This is **NOT** an official MLB product or affiliated with MLB in anyway. 
+**<u>NOTICE</u>:** This is **NOT** an official MLB product or affiliated with MLB in anyway.
