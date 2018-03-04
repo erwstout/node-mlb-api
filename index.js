@@ -37,12 +37,14 @@ const currentYear = new Date().getFullYear();
  * Possible TODO: Add team abbrev for easy call? `getTeams('CLE')`
  */
 const getTeams = function(singleTeamId = '') {
-  request({url: apiURL+`teams?sportId=1&teamId=${singleTeamId}`, json: true}, (error, response, body) => {
-    if( error ) {
-      return error
-    } else {
-      return body
-    }
+  return new Promise((resolve, reject) => {
+    request({url: apiURL+`teams?sportId=1&teamId=${singleTeamId}`, json: true}, (error, response, body) => {
+      if( error ) {
+        resolve(error)
+      } else {
+        resolve(body)
+      }
+    })
   })
 }
 
@@ -50,12 +52,14 @@ const getTeams = function(singleTeamId = '') {
  * Get Single Game Feed
  */
 const getGameFeed = function(gameId) {
-  request({url: apiURL11+`game/${gameId}/feed/live`, json: true}, (error, response, body) => {
-    if( error ) {
-      return error
-    } else {
-      return body
-    }
+  return new Promise((resolve, reject) => {
+    request({url: apiURL11+`game/${gameId}/feed/live`, json: true}, (error, response, body) => {
+      if( error ) {
+        resolve(error)
+      } else {
+        resolve(body)
+      }
+    })
   })
 }
 
@@ -65,22 +69,24 @@ const getGameFeed = function(gameId) {
  * If no year, return current year.
  */
 const getStandings = function(league, year) {
-  let leagueId = '';
+  return new Promise((resolve, reject) => {
+    let leagueId = '';
 
-  if( league === 'AL' ) {
-    leagueId = '103';
-  } else if ( league === 'NL' ) {
-    leagueId = '104';
-  } else if( league !== 'AL' || league !== 'NL' ) {
-    return console.error('Please enter a league. Accepted: AL / NL')
-  }
-
-  request({url: `${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, json: true}, (error, response, body) => {
-    if( error ) {
-      return error
-    } else {
-      return body
+    if( league === 'AL' ) {
+      leagueId = '103';
+    } else if ( league === 'NL' ) {
+      leagueId = '104';
+    } else if( league !== 'AL' || league !== 'NL' ) {
+      return console.error('Please enter a league. Accepted: AL / NL')
     }
+
+    request({url: `${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, json: true}, (error, response, body) => {
+      if( error ) {
+        resolve(error)
+      } else {
+        resolve(body)
+      }
+    })
   })
 }
 
