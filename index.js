@@ -70,7 +70,7 @@ const getStandings = function(league, year) {
   } else if ( league === 'NL' ) {
     leagueId = '104';
   } else if( league !== 'AL' || league !== 'NL' ) {
-    return {'Please enter a league. Accepted: AL / NL'}
+    return console.error('Please enter a league. Accepted: AL / NL')
   }
 
   request(`${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, (error, response, body) => {
