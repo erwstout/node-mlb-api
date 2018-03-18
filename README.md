@@ -48,6 +48,13 @@ Gets a single game's linescore. Accepts a **required** argument of the `gamePk` 
 MLBApi.getLinescore(533786) // Tigers vs. Yankees 02/23/2018
 ```
 
+### `getBoxscore()`
+Gets a single game's boxscore. Accepts a **required** argument of the `gamePk` id.
+
+```js
+MLBApi.getBoxscore(533786) // Tigers vs. Yankees 02/23/2018
+```
+
 ### `getStandings()`
 Gets regular season standings by League. Accepts a **required** string argument of league
 (`'AL'` / `'NL'`) and an *optional* year argument (`YYYY`). The response from the API
