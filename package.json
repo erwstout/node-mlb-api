@@ -1,6 +1,6 @@
 {
   "name": "node-mlb-api",
-  "version": "0.0.2-4",
+  "version": "0.0.2-5",
   "description": "A Node.js wrapper for the new MLB Stats API",
   "main": "index.js",
   "scripts": {
