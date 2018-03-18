@@ -41,6 +41,13 @@ Gets a single game's live feed. Accepts a **required** argument of the `gamePk` 
 MLBApi.getGameFeed(533786) // Tigers vs. Yankees 02/23/2018
 ```
 
+### `getLinescore()`
+Gets a single game's linescore. Accepts a **required** argument of the `gamePk` id.
+
+```js
+MLBApi.getLinescore(533786) // Tigers vs. Yankees 02/23/2018
+```
+
 ### `getStandings()`
 Gets regular season standings by League. Accepts a **required** string argument of league
 (`'AL'` / `'NL'`) and an *optional* year argument (`YYYY`). The response from the API

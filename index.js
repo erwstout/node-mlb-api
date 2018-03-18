@@ -90,9 +90,26 @@ const getStandings = function(league, year) {
   })
 }
 
+/**
+  * Get Game Linescore
+  * Accepts required argument of gamePk id
+**/
+const getLinescore = function(gameId) {
+  return new Promise((resolve, reject) => {
+    request({url: apiURL+`game/${gameId}/linescore`, json: true}, (error, response, body) => {
+      if( error ) {
+        resolve(error)
+      } else {
+        resolve(body)
+      }
+    })
+  })
+}
+
 module.exports = {
   getGames,
   getTeams,
   getGameFeed,
-  getStandings
+  getStandings,
+  getLinescore
 }
