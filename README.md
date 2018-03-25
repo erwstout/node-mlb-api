@@ -55,6 +55,15 @@ Gets a single game's boxscore. Accepts a **required** argument of the `gamePk` i
 MLBApi.getBoxscore(533786) // Tigers vs. Yankees 02/23/2018
 ```
 
+### `getColorFeed()`
+Gets a single game's color feed. Accepts a **required** argument of the `gamePk` id.
+Beware, the payload for this can get very large - see the disclaiming on the [MLB Stats API](http://statsapi.mlb.com/docs/)
+to learn more and how to manage the data responsibly. 
+
+```js
+MLBApi.getBoxscore(533786) // Tigers vs. Yankees 02/23/2018
+```
+
 ### `getStandings()`
 Gets regular season standings by League. Accepts a **required** string argument of league
 (`'AL'` / `'NL'`) and an *optional* year argument (`YYYY`). The response from the API
