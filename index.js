@@ -6,7 +6,7 @@
  * License: MIT
  */
 
-const request = require('request');
+const request = require("request");
 
 // api endpoint
 const apiURL = `http://statsapi.mlb.com:80/api/v1/`;
@@ -18,17 +18,20 @@ const currentYear = new Date().getFullYear();
 /**
  * Get a list of games. If no game date is passed (MM/DD/YYYY), gets the current day
  */
- const getGames = function(gameDate = '') {
-   return new Promise( (resolve, reject) => {
-     request({url: apiURL+'schedule?sportId=1'+'&date='+gameDate, json: true}, (error, response, body) => {
-       if( error ) {
-         resolve(error);
-       } else {
-         resolve(body);
-       }
-     })
-   })
- }
+const getGames = function(gameDate = "") {
+  return new Promise((resolve, reject) => {
+    request(
+      { url: apiURL + "schedule?sportId=1" + "&date=" + gameDate, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
+      }
+    );
+  });
+};
 
 /**
  * Get a list of data about teams
@@ -36,32 +39,38 @@ const currentYear = new Date().getFullYear();
  * Possible TODO: Allow to get multiple teams, but not all? Use case??
  * Possible TODO: Add team abbrev for easy call? `getTeams('CLE')`
  */
-const getTeams = function(singleTeamId = '') {
+const getTeams = function(singleTeamId = "") {
   return new Promise((resolve, reject) => {
-    request({url: apiURL+`teams?sportId=1&teamId=${singleTeamId}`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      { url: apiURL + `teams?sportId=1&teamId=${singleTeamId}`, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 /**
  * Get Single Game Feed
  */
 const getGameFeed = function(gameId) {
   return new Promise((resolve, reject) => {
-    request({url: apiURL11+`game/${gameId}/feed/live`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      { url: apiURL11 + `game/${gameId}/feed/live`, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 /**
  * Get Regular Season Standings
@@ -70,74 +79,93 @@ const getGameFeed = function(gameId) {
  */
 const getStandings = function(league, year) {
   return new Promise((resolve, reject) => {
-    let leagueId = '';
+    let leagueId = "";
 
-    if( league === 'AL' ) {
-      leagueId = '103';
-    } else if ( league === 'NL' ) {
-      leagueId = '104';
-    } else if( league !== 'AL' || league !== 'NL' ) {
-      return console.error('Please enter a league. Accepted: AL / NL')
+    if (league === "AL") {
+      leagueId = "103";
+    } else if (league === "NL") {
+      leagueId = "104";
+    } else if (league !== "AL" || league !== "NL") {
+      return console.error("Please enter a league. Accepted: AL / NL");
     }
 
-    request({url: `${apiURL}standings?leagueId=${leagueId}&season=${year ? year : currentYear}`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      {
+        url: `${apiURL}standings?leagueId=${leagueId}&season=${
+          year ? year : currentYear
+        }`,
+        json: true
+      },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 /**
-  * Get Game Linescore
-  * Accepts required argument of gamePk id
-**/
+ * Get Game Linescore
+ * Accepts required argument of gamePk id
+ */
 const getLinescore = function(gameId) {
   return new Promise((resolve, reject) => {
-    request({url: apiURL+`game/${gameId}/linescore`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      { url: apiURL + `game/${gameId}/linescore`, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 /**
-  * Get Game Boxscore
-  * Accepts required argument of gamePk id
-**/
+ * Get Game Boxscore
+ * Accepts required argument of gamePk id
+ */
 const getBoxscore = function(gameId) {
   return new Promise((resolve, reject) => {
-    request({url: apiURL+`game/${gameId}/boxscore`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      { url: apiURL + `game/${gameId}/boxscore`, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 /**
-  * Get Color Feed
-  * Accepts required argument of gamePk id
-  * Warning: This payload can get very large. See MLB API Documentation for DiffPatch information
-**/
+ * Get Color Feed
+ * Accepts required argument of gamePk id
+ * Warning: This payload can get very large. See MLB API Documentation for DiffPatch information
+ *
+ *
+ */
 const getColorFeed = function(gameId) {
   return new Promise((resolve, reject) => {
-    request({url: apiURL+`game/${gameId}/feed/color`, json: true}, (error, response, body) => {
-      if( error ) {
-        resolve(error)
-      } else {
-        resolve(body)
+    request(
+      { url: apiURL + `game/${gameId}/feed/color`, json: true },
+      (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
       }
-    })
-  })
-}
+    );
+  });
+};
 
 module.exports = {
   getGames,
@@ -147,4 +175,4 @@ module.exports = {
   getLinescore,
   getBoxscore,
   getColorFeed
-}
+};

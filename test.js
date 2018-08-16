@@ -1,4 +1,4 @@
-const MLBApi = require('./index.js')
+const MLBApi = require("./index.js");
 
 MLBApi.getGames();
 
@@ -10,4 +10,4 @@ MLBApi.getLinescore(533786);
 
 MLBApi.getBoxscore(533786);
 
-MLBApi.getStandings('AL');
+MLBApi.getStandings("AL");
