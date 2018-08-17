@@ -1,4 +1,4 @@
-const MLBApi = require("./index.js");
+const MLBApi = require("./lib/index.js");
 
 MLBApi.getGames();
 

@@ -1,16 +1,20 @@
+// @flow
+
 /**
  * Get Game Linescore
  * Accepts required argument of gamePk id
  */
 
-import API_URL from "./constants";
+const constants = require("./constants");
 const request = require("request");
 
-const getLinescore = function(gameId) {
-  return new Promise((resolve, reject) => {
+const { API_URL } = constants;
+
+const getLinescore = (gameId: number) => {
+  return new Promise((resolve: Function, reject: Function) => {
     request(
       { url: API_URL + `game/${gameId}/linescore`, json: true },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -21,4 +25,4 @@ const getLinescore = function(gameId) {
   });
 };
 
-export default getLinescore;
+module.exports = getLinescore;

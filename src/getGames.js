@@ -1,15 +1,19 @@
+// @flow
+
 /**
  * Get a list of games. If no game date is passed (MM/DD/YYYY), gets the current day
  */
 
-import API_URL from "./constants";
+const constants = require("./constants");
 const request = require("request");
 
-const getGames = function(gameDate = "") {
-  return new Promise((resolve, reject) => {
+const { API_URL } = constants;
+
+const getGames = (gameDate: string = "") => {
+  return new Promise((resolve: Function, reject: Function) => {
     request(
       { url: API_URL + "schedule?sportId=1" + "&date=" + gameDate, json: true },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -20,4 +24,4 @@ const getGames = function(gameDate = "") {
   });
 };
 
-export default getGames;
+module.exports = getGames;

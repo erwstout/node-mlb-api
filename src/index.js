@@ -1,3 +1,5 @@
+// @flow
+
 const getBoxScore = require("./getBoxscore");
 const getColorFeed = require("./getColorFeed");
 const getGameFeed = require("./getGameFeed");

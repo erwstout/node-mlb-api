@@ -1,15 +1,19 @@
+// @flow
+
 /**
  * Get Single Game Feed
  */
 
-import API_URL_11 from "./constants";
+const constants = require("./constants");
 const request = require("request");
 
-const getGameFeed = function(gameId) {
-  return new Promise((resolve, reject) => {
+const { API_URL_11 } = constants;
+
+const getGameFeed = (gameId: number) => {
+  return new Promise((resolve: Function, reject: Function) => {
     request(
       { url: API_URL_11 + `game/${gameId}/feed/live`, json: true },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -20,4 +24,4 @@ const getGameFeed = function(gameId) {
   });
 };
 
-export default getGameFeed;
+module.exports = getGameFeed;

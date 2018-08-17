@@ -1,3 +1,5 @@
+// @flow
+
 /**
  * Get a list of data about teams
  * Accepts argument for singleTeamId to only return information from one team
@@ -5,14 +7,14 @@
  * Possible TODO: Add team abbrev for easy call? `getTeams('CLE')`
  */
 
-import API_URL from "constants";
+const { API_URL } = require("./constants");
 const request = require("request");
 
-const getTeams = function(singleTeamId = "") {
-  return new Promise((resolve, reject) => {
+const getTeams = (singleTeamId: string = "") => {
+  return new Promise((resolve: Function, reject: Function) => {
     request(
       { url: API_URL + `teams?sportId=1&teamId=${singleTeamId}`, json: true },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -23,4 +25,4 @@ const getTeams = function(singleTeamId = "") {
   });
 };
 
-export default getTeams;
+module.exports = getTeams;

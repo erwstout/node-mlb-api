@@ -1,16 +1,20 @@
+// @flow
+
 /**
  * Get Game Boxscore
  * Accepts required argument of gamePk id
  */
 
-import API_URL from "./constants";
+const constants = require("./constants");
 const request = require("request");
 
-const getBoxscore = function(gameId) {
-  return new Promise((resolve, reject) => {
+const { API_URL } = constants;
+
+const getBoxscore = (gameId: number) => {
+  return new Promise((resolve: Function, reject: Function) => {
     request(
       { url: API_URL + `game/${gameId}/boxscore`, json: true },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -21,4 +25,4 @@ const getBoxscore = function(gameId) {
   });
 };
 
-export default getBoxscore;
+module.exports = getBoxscore;

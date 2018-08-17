@@ -1,14 +1,16 @@
+// @flow
+
 /**
  * Get Regular Season Standings
  * Accepts League Parameter (AL/NL), and year (YYYY)
  * If no year, return current year.
  */
 
-import { API_URL, CURRENT_YEAR } from "./constants";
+const { API_URL, CURRENT_YEAR } = require("./constants");
 const request = require("request");
 
-const getStandings = function(league, year) {
-  return new Promise((resolve, reject) => {
+const getStandings = (league: string, year: string) => {
+  return new Promise((resolve: Function, reject: Function) => {
     let leagueId = "";
 
     if (league === "AL") {
@@ -26,7 +28,7 @@ const getStandings = function(league, year) {
         }`,
         json: true
       },
-      (error, response, body) => {
+      (error: Object, response: Object, body: Object) => {
         if (error) {
           reject(error);
         } else {
@@ -37,4 +39,4 @@ const getStandings = function(league, year) {
   });
 };
 
-export default getStandings;
+module.exports = getStandings;
