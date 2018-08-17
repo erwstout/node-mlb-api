@@ -1,6 +1,6 @@
 // @flow
 
-const getBoxScore = require("./getBoxscore");
+const getBoxscore = require("./getBoxscore");
 const getColorFeed = require("./getColorFeed");
 const getGameFeed = require("./getGameFeed");
 const getGames = require("./getGames");
@@ -9,7 +9,7 @@ const getStandings = require("./getStandings");
 const getTeams = require("./getTeams");
 
 module.exports = {
-  getBoxScore,
+  getBoxscore,
   getColorFeed,
   getGameFeed,
   getGames,
